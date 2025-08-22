@@ -1,6 +1,6 @@
 {
   "name": "unofficial-uk-parliament-lib",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Unofficial typed client for UK Parliament APIs (Members API)",
   "type": "module",
   "main": "./dist/index.cjs",

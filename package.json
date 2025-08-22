@@ -1,0 +1,50 @@
+{
+  "name": "unofficial-uk-parliament-lib",
+  "version": "1.0.0",
+  "description": "Unofficial typed client for UK Parliament APIs (Members API)",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "prebuild": "npm run gen:members && npm run gen:interests",
+    "gen:members": "openapi --input https://members-api.parliament.uk/swagger/v1/swagger.json --output src/generated/members --client fetch --useOptions --exportServices true --exportModels true",
+    "gen:interests": "openapi --input https://interests-api.parliament.uk/swagger/v1/swagger.json --output src/generated/interests --client fetch --useOptions --exportServices true --exportModels true",
+    "build": "tsup src/index.ts --dts --format cjs,esm",
+    "dev": "tsup src/index.ts --dts --format cjs,esm --watch",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harryzachariou/unofficial-uk-parliament-lib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/harryzachariou/unofficial-uk-parliament-lib/issues"
+  },
+  "homepage": "https://github.com/harryzachariou/unofficial-uk-parliament-lib#readme",
+  "devDependencies": {
+    "openapi-typescript-codegen": "^0.29.0",
+    "tsup": "^8.1.0",
+    "typescript": "^5.6.3"
+  }
+}

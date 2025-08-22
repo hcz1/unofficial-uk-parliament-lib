@@ -36,10 +36,10 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/harryzachariou/unofficial-uk-parliament-lib.git"
+    "url": "git+https://github.com/hcz1/unofficial-uk-parliament-lib.git"
   },
   "bugs": {
-    "url": "https://github.com/harryzachariou/unofficial-uk-parliament-lib/issues"
+    "url": "https://github.com/hcz1/unofficial-uk-parliament-lib/issues"
   },
   "homepage": "https://github.com/harryzachariou/unofficial-uk-parliament-lib#readme",
   "devDependencies": {

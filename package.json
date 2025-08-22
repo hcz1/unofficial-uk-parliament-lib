@@ -4,23 +4,23 @@
   "description": "Unofficial typed client for UK Parliament APIs (Members API)",
   "type": "module",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     }
   },
   "sideEffects": false,
   "files": [
     "dist",
-    "src",
     "LICENSE",
     "README.md"
   ],
   "scripts": {
+    "prepare": "npm run build",
     "prebuild": "npm run gen:members && npm run gen:interests",
     "gen:members": "openapi --input https://members-api.parliament.uk/swagger/v1/swagger.json --output src/generated/members --client fetch --useOptions --exportServices true --exportModels true",
     "gen:interests": "openapi --input https://interests-api.parliament.uk/swagger/v1/swagger.json --output src/generated/interests --client fetch --useOptions --exportServices true --exportModels true",
@@ -41,7 +41,7 @@
   "bugs": {
     "url": "https://github.com/hcz1/unofficial-uk-parliament-lib/issues"
   },
-  "homepage": "https://github.com/harryzachariou/unofficial-uk-parliament-lib#readme",
+  "homepage": "https://github.com/hcz1/unofficial-uk-parliament-lib#readme",
   "devDependencies": {
     "openapi-typescript-codegen": "^0.29.0",
     "tsup": "^8.1.0",

@@ -22,6 +22,23 @@ export function createMembersClient(options: MembersClientOptions = {}) {
   } as const;
 }
 
+export function configureMembers(options: MembersClientOptions = {}) {
+  const baseUrl = options.baseUrl ?? "https://members-api.parliament.uk";
+  const fetchImpl = options.fetch ?? globalThis.fetch;
+  if (!fetchImpl) {
+    throw new Error(
+      "A fetch implementation is required (Node 18+ or provide fetch)"
+    );
+  }
+  // Configure generated client
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { OpenAPI } = require("./generated/members");
+  OpenAPI.BASE = baseUrl;
+  // Inject global fetch if needed (the generated code uses global fetch)
+  // In Node, ensure globalThis.fetch is set by consumer if Node < 18.
+  return { baseUrl, fetch: fetchImpl } as const;
+}
+
 export interface InterestsClientOptions {
   baseUrl?: string;
   fetch?: typeof globalThis.fetch;
@@ -41,4 +58,19 @@ export function createInterestsClient(options: InterestsClientOptions = {}) {
     baseUrl,
     fetch: fetchImpl,
   } as const;
+}
+
+export function configureInterests(options: InterestsClientOptions = {}) {
+  const baseUrl = options.baseUrl ?? "https://interests-api.parliament.uk";
+  const fetchImpl = options.fetch ?? globalThis.fetch;
+  if (!fetchImpl) {
+    throw new Error(
+      "A fetch implementation is required (Node 18+ or provide fetch)"
+    );
+  }
+  // Configure generated client
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { OpenAPI } = require("./generated/interests");
+  OpenAPI.BASE = baseUrl;
+  return { baseUrl, fetch: fetchImpl } as const;
 }
